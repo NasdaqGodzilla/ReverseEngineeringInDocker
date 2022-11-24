@@ -72,6 +72,15 @@ RUN brew install python@3.9 pyenv
 RUN python3.9 -m pip install --upgrade pip
 RUN python3.9 -m pip install --upgrade setuptools
 
+# adb
+USER 0
+RUN add-apt-repository ppa:nilarimogard/webupd8 && apt update \
+        && apt -y install android-tools-adb android-tools-fastboot
+USER 1000
+
+# frida
+RUN pip3 install frida-tools
+
 # clean
 USER 0
 RUN apt autoremove --purge -y && apt clean && apt autoclean && rm -rf /var/lib/apt/lists/*
