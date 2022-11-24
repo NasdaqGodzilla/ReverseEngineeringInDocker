@@ -104,6 +104,17 @@ USER 1000
 WORKDIR $HOME
 RUN pip3 install objection
 
+# lamda
+USER 0
+RUN apt install -y wget
+USER 1000
+WORKDIR $HOME
+ENV FILENAME_LAMDA_SETUP="lamda_setup.sh"
+ENV FILENAME_LAMDA="arm64-v8a.tar.gz-install.sh"
+ENV FILENAME_LAMDA_URL="https://github.com/rev1si0n/lamda/releases/download/3.0.47/arm64-v8a.tar.gz-install.sh"
+RUN wget $FILENAME_LAMDA_URL
+COPY "$FILENAME_LAMDA_SETUP" $HOME
+
 # clean
 USER 0
 RUN apt autoremove --purge -y && apt clean && apt autoclean && rm -rf /var/lib/apt/lists/*

@@ -10,6 +10,7 @@ Docker image for Android reverse engineering tools. Android逆向工程工具Doc
 5. V1.4: Add frida-dexdump
 6. V1.5: Add frida-server, Bash script to setup frida-server
 7. V1.6: Add Objection
+8. V1.7: Add Lamda
 
 # Usage
 
