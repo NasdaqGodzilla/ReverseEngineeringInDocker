@@ -84,6 +84,21 @@ RUN pip3 install frida-tools
 # frida-dexdump
 RUN pip3 install frida-dexdump
 
+# frida-server
+USER 0
+RUN apt -y install xz-utils
+USER 1000
+WORKDIR $HOME
+ENV FILENAME_FRIDASERVER="frida-server-16.0.3-android-arm64"
+COPY "$FILENAME_FRIDASERVER".xz $HOME
+RUN sudo chown 1000:1000 $FILENAME_FRIDASERVER.xz \
+        && unxz $FILENAME_FRIDASERVER.xz
+
+# Bash script to setup frida-server
+USER 1000
+WORKDIR $HOME
+COPY frida_setup.sh $HOME
+
 # clean
 USER 0
 RUN apt autoremove --purge -y && apt clean && apt autoclean && rm -rf /var/lib/apt/lists/*
