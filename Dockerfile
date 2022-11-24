@@ -40,11 +40,36 @@ RUN git clone https://github.com/skylot/jadx.git jadx \
         && ./gradlew dist \
         && ln -s $HOME/project/jadx/jadx-gui/build/install/jadx-gui/bin/jadx-gui $HOME/jadx-gui
 
+# Homebrew
+WORKDIR $HOME
+USER 0
+RUN add-apt-repository -y ppa:git-core/ppa \
+        && apt update \
+        && apt install -y --no-install-recommends \
+                bzip2 \
+                ca-certificates \
+                curl \
+                file \
+                fonts-dejavu-core \
+                g++ \
+                locales \
+                make \
+                openssh-client \
+                patch \
+                uuid-runtime
+RUN localedef -i en_US -f UTF-8 en_US.UTF-8 \
+        && useradd -m -s /bin/bash linuxbrew \
+        && echo 'linuxbrew ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+ENV PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
+USER 1000
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+ENV PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
+
 # clean
 USER 0
 RUN apt autoremove --purge -y && apt clean && apt autoclean && rm -rf /var/lib/apt/lists/*
 USER 1000
 
-USER 1000
+RUN set +x
 WORKDIR $HOME
 

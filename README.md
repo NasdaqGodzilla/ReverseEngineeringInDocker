@@ -3,9 +3,18 @@ Docker image for Android reverse engineering tools. Android逆向工程工具Doc
 
 # Version
 
-1. 1.0: Add vnc server, jdk 11, Jadx
+1. V1.0: Add vnc server, jdk 11, Jadx
+2. V1.1: Add Homebrew
 
 # Usage
+
+- Build
+
+```
+docker build .
+```
+
+- Start
 
 ```
 docker run -d --name YourName --shm-size 2G -P -p 8118:5901 -p 8119:6901 -e VNC_RESOLUTION=1920x1080 -e VNC_PW=ppllmmoo -v ~/:/metaworld:cached reverseengineeringindocker:VERSION
