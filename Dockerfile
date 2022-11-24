@@ -81,6 +81,9 @@ USER 1000
 # frida
 RUN pip3 install frida-tools
 
+# frida-dexdump
+RUN pip3 install frida-dexdump
+
 # clean
 USER 0
 RUN apt autoremove --purge -y && apt clean && apt autoclean && rm -rf /var/lib/apt/lists/*

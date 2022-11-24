@@ -7,6 +7,7 @@ Docker image for Android reverse engineering tools. Android逆向工程工具Doc
 2. V1.1: Add Homebrew
 3. V1.2: Add Python, pyenv, pip3, setuptools
 4. V1.3: Add frida
+5. V1.4: Add frida-dexdump
 
 # Usage
 
