@@ -99,6 +99,11 @@ USER 1000
 WORKDIR $HOME
 COPY frida_setup.sh $HOME
 
+# Objection
+USER 1000
+WORKDIR $HOME
+RUN pip3 install objection
+
 # clean
 USER 0
 RUN apt autoremove --purge -y && apt clean && apt autoclean && rm -rf /var/lib/apt/lists/*
