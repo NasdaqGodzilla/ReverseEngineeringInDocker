@@ -65,6 +65,13 @@ USER 1000
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
 
+# Python pyenv pip3 setuptools
+USER 1000
+WORKDIR $HOME
+RUN brew install python@3.9 pyenv
+RUN python3.9 -m pip install --upgrade pip
+RUN python3.9 -m pip install --upgrade setuptools
+
 # clean
 USER 0
 RUN apt autoremove --purge -y && apt clean && apt autoclean && rm -rf /var/lib/apt/lists/*

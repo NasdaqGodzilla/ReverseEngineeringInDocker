@@ -5,6 +5,7 @@ Docker image for Android reverse engineering tools. Android逆向工程工具Doc
 
 1. V1.0: Add vnc server, jdk 11, Jadx
 2. V1.1: Add Homebrew
+3. V1.2: Add Python, pyenv, pip3, setuptools
 
 # Usage
 
